@@ -1,11 +1,14 @@
-from math import cos, e, sin, log10
+import math
 from bisection import bisection
 from posicao_falsa import posicao_falsa
 from ponto_fixo import ponto_fixo
 from newton import newton
+# from sympy import diff, symbols
+from sympy import *
+
 
 def ex_18(x):
-    return e**(-x**2) - cos(x)
+    return math.e**(-x**2) - math.cos(x)
 
 
 def ex_19(x):
@@ -13,11 +16,11 @@ def ex_19(x):
 
 
 def ex_20(x):
-    return 4*sin(x) - e**x
+    return 4*math.sin(x) - math.e**x
 
 
 def ex_21(x):
-    return x*log10(x) - 1
+    return x*math.log10(x) - 1
 
 
 def test_bisection():
@@ -48,6 +51,7 @@ def test_bisection():
 
 print('---Teste do método da bisecção---')
 test_bisection()
+
 
 def test_posicao_falsa():
     limite_inicial = 1
@@ -81,7 +85,7 @@ test_posicao_falsa()
 
 
 def mpf_ex_18(x):
-    return cos(x) - e**(-x**2) + x
+    return math.cos(x) - math.e**(-x**2) + x
 
 
 def mpf_ex_19(x):
@@ -89,11 +93,11 @@ def mpf_ex_19(x):
 
 
 def mpf_ex_20(x):
-    return x-2*sin(x)+0.5*e**x
+    return x-2*math.sin(x)+0.5*math.e**x
 
 
 def mpf_ex_21(x):
-    return x-1.3*(x*log10(x) - 1)
+    return x-1.3*(x*math.log10(x) - 1)
 
 
 def test_ponto_fixo():
@@ -121,27 +125,34 @@ def test_ponto_fixo():
 print('---Teste do método do ponto fixo---')
 test_ponto_fixo()
 
+
 def test_newton():
+    x = symbols('x')
+
     p_0 = 1.5
     tol = 1e-4
     it = 1000
+    expr_18 = exp(-x**2)-cos(x)
 
-    newton(ex_18, p_0, tol, it)
+    newton(expr_18, p_0, tol, it)
 
     p_0 = 1
     tol = 1e-6
+    expr_19 = x**3-x-1
 
-    newton(ex_19, p_0, tol, it)
+    newton(expr_19, p_0, tol, it)
 
     p_0 = 0.5
     tol = 1e-5
+    expr_20 = 4*sin(x) - exp(x)
 
-    newton(ex_20, p_0, tol, it)
+    newton(expr_20, p_0, tol, it)
 
     p_0 = 2.5
     tol = 1e-7
+    expr_21 = ( x*log(x,10) - 1 )
 
-    newton(ex_21, p_0, tol, it)
+    newton(expr_21, p_0, tol, it)
 
 
 print('---Teste do método do newton---')
