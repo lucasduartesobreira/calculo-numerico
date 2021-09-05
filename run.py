@@ -2,6 +2,7 @@ from math import cos, e, sin, log10
 from bisection import bisection
 from posicao_falsa import posicao_falsa
 from ponto_fixo import ponto_fixo
+from newton import newton
 
 def ex_18(x):
     return e**(-x**2) - cos(x)
@@ -119,3 +120,29 @@ def test_ponto_fixo():
 
 print('---Teste do método do ponto fixo---')
 test_ponto_fixo()
+
+def test_newton():
+    p_0 = 1.5
+    tol = 1e-4
+    it = 1000
+
+    newton(ex_18, p_0, tol, it)
+
+    p_0 = 1
+    tol = 1e-6
+
+    newton(ex_19, p_0, tol, it)
+
+    p_0 = 0.5
+    tol = 1e-5
+
+    newton(ex_20, p_0, tol, it)
+
+    p_0 = 2.5
+    tol = 1e-7
+
+    newton(ex_21, p_0, tol, it)
+
+
+print('---Teste do método do newton---')
+test_newton()
