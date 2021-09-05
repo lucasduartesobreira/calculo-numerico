@@ -72,4 +72,5 @@ def test_posicao_falsa():
 
     posicao_falsa(ex_21, limite_inicial, limite_final, tol, it)
 
+
 test_posicao_falsa()
