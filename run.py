@@ -5,6 +5,7 @@ from ponto_fixo import ponto_fixo
 from newton import newton
 # from sympy import diff, symbols
 from sympy import *
+from secante import secante
 
 
 def ex_18(x):
@@ -157,3 +158,35 @@ def test_newton():
 
 print('---Teste do método do newton---')
 test_newton()
+
+
+def test_secante():
+    it = 1000
+
+    p_0 = 1
+    p_1 = 2
+    tol = 1e-4
+
+    secante(ex_18, p_0, p_1, tol, it)
+
+    p_0 = 0
+    p_1 = 0.5
+    tol = 1e-6
+
+    secante(ex_19, p_0, p_1, tol, it)
+
+    p_0 = 0
+    p_1 = 1
+    tol = 1e-5
+
+    secante(ex_20, p_0, p_1, tol, it)
+
+    p_0 = 2.3
+    p_1 = 2.7
+    tol = 1e-7
+
+    secante(ex_21, p_0, p_1, tol, it)
+
+
+print('---Teste do método da secante---')
+test_secante()
